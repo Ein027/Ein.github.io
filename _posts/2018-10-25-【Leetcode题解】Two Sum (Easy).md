@@ -42,8 +42,8 @@ public:
         for(int i = 0; i < nums.size(); i++)
             if( record.find(nums[i]) != record.end() )
             {
-                int l=i<record[nums[i]]?i:record[nums[i]]; //按大小顺序。
                 int r=i>record[nums[i]]?i:record[nums[i]];
+                int l=i<record[nums[i]]?i:record[nums[i]]; //按大小顺序。
                 result.push_back(l);
                 result.push_back(r);
                 return result;
