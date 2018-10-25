@@ -38,11 +38,11 @@ public:
         unordered_map<int, int> record;
         vector<int> result;
         for(int i = 0; i < nums.size(); i++)
-        	record[nums[i]] = i;
+        	record[nums[i]] = i;	//存入
             for(int i = 0; i < nums.size(); i++)
             if( record.find(nums[i]) != record.end() )
             {
-                int r=i>record[nums[i]]?i:record[nums[i]];
+                int r=i>record[nums[i]]?i:record[nums[i]];	//按顺序
                 int l=i<record[nums[i]]?i:record[nums[i]];
                 result.push_back(l);
                 result.push_back(r);
