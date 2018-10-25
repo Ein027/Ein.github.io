@@ -1,6 +1,6 @@
 ---
 layout:     post
-title:      【leetcode】题解1 Two Sum (easy)
+title:      【leetcode】题解1 Two Sum (Easy)
 subtitle:   避免手凉
 date:       2018-10-25
 author:     Ein
