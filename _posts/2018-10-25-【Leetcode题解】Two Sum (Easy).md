@@ -13,7 +13,7 @@ tags:
 
 Link: <https://leetcode.com/problems/two-sum/>
 
-####Problem:
+Problem:
 
 Given an array of integers, return **indices** of the two numbers such that they add up to a specific target.
 
@@ -23,7 +23,7 @@ You may assume that each input would have **exactly** one solution, and you may 
 
 你可以假设每个输入只对应一种答案，且同样的元素不能被重复利用。
 
-####Example:
+#### Example:
 
 ```
 Given nums = [2, 7, 11, 15], target = 9,
@@ -32,15 +32,15 @@ Because nums[0] + nums[1] = 2 + 7 = 9,
 return [0, 1].
 ```
 
+#### 
 
-
-####Approach:
+#### Approach:
 
 两次遍历，第一次利用哈希表存入所有数据，第二次查找 **target-nums[i]** 是否在哈希表中
 
 时间，空间都是O(n)
 
-####Solution:
+#### Solution:
 
 ```c++
 class Solution {
