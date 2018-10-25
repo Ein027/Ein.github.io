@@ -1,3 +1,14 @@
+---
+layout:     post
+title:      【leetcode】题解1 Two Sum (easy)
+subtitle:   避免手凉
+date:       2018-10-25
+author:     Ein
+header-img: img/leetcode.jpg
+catalog: true
+tags:
+    - Leetcode
+---
 ## Two Sum	两数之和
 
 Link: <https://leetcode.com/problems/two-sum/>
