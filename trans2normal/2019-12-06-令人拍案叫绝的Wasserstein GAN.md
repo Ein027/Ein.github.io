@@ -2,7 +2,7 @@
 
 # 令人拍案叫绝的Wasserstein GAN
 
-> 本文后续：[Wasserstein GAN最新进展：从weight clipping到gradient penalty，更加先进的Lipschitz限制手法](https://www.zhihu.com/question/52602529/answer/158727900)
+> 本文转载自知乎用户[郑华滨](https://www.zhihu.com/people/zheng-hua-bin)的文章。本文后续：[Wasserstein GAN最新进展：从weight clipping到gradient penalty，更加先进的Lipschitz限制手法](https://www.zhihu.com/question/52602529/answer/158727900)
 
 在GAN的相关研究如火如荼甚至可以说是泛滥的今天，一篇新鲜出炉的arXiv论文《[Wasserstein GAN](https://arxiv.org/abs/1701.07875)》却在Reddit的Machine Learning频道火了，连Goodfellow都[在帖子里和大家热烈讨论](https://www.reddit.com/r/MachineLearning/comments/5qxoaz/r_170107875_wasserstein_gan/)，这篇论文究竟有什么了不得的地方呢？ 
 
@@ -24,7 +24,7 @@
 
 算法截图如下：
 
-![](https://pic1.zhimg.com/80/v2-6be6e2ef3d15c4b10c2a943e9bf4db70_hd.jpg)
+![](https://raw.githubusercontent.com/Ein027/Blog-Img/master/img/v2-6be6e2ef3d15c4b10c2a943e9bf4db70_hd.jpg)
 
 改动是如此简单，效果却惊人地好，以至于Reddit上不少人在感叹：就这样？没有别的了？ 太简单了吧！这些反应让我想起了一个颇有年头的鸡汤段子，说是一个工程师在电机外壳上用粉笔划了一条线排除了故障，要价一万美元——画一条线，1美元；知道在哪画线，9999美元。上面这四点改进就是作者Martin Arjovsky划的简简单单四条线，对于工程实现便已足够，但是知道在哪划线，背后却是精巧的数学分析，而这也是本文想要整理的内容。
 
@@ -135,7 +135,7 @@ _WGAN源码实现：[martinarjovsky/WassersteinGAN](https://github.com/martinarj
 
 实验辅证如下：
 
-![](https://pic4.zhimg.com/80/v2-8715a60c1a8993953f125e03938125d7_hd.jpg)
+![](https://raw.githubusercontent.com/Ein027/Blog-Img/master/img/v2-8715a60c1a8993953f125e03938125d7_hd.jpg)
 
 > WGAN前作Figure 2。先分别将DCGAN训练1，20，25个epoch，然后固定生成器不动，判别器重新随机初始化从头开始训练，对于第一种形式的生成器loss产生的梯度可以打印出其尺度的变化曲线，可以看到随着判别器的训练，生成器的梯度均迅速衰减。注意y轴是对数坐标轴。
 
@@ -184,7 +184,7 @@ KL(P_g || P_r) &= \mathbb{E}_{x \sim P_g} [\log \frac{P_g(x)}{P_r(x)}] \\
 
 实验辅证如下：
 
-![](https://pic4.zhimg.com/80/v2-b85cdb4d79d7618213c320cfb3a6d4bf_hd.jpg)
+![](https://raw.githubusercontent.com/Ein027/Blog-Img/master/img/v2-b85cdb4d79d7618213c320cfb3a6d4bf_hd.jpg)
 
 > WGAN前作Figure 3。先分别将DCGAN训练1，20，25个epoch，然后固定生成器不动，判别器重新随机初始化从头开始训练，对于第二种形式的生成器loss产生的梯度可以打印出其尺度的变化曲线，可以看到随着判别器的训练，蓝色和绿色曲线中生成器的梯度迅速增长，说明梯度不稳定，红线对应的是DCGAN相对收敛的状态，梯度才比较稳定。
 
@@ -221,7 +221,7 @@ Wasserstein距离又叫Earth-Mover（EM）距离，定义如下：
 
 **Wasserstein距离相比KL散度、JS散度的优越性在于，即便两个分布没有重叠，Wasserstein距离仍然能够反映它们的远近。**WGAN本作通过简单的例子展示了这一点。考虑如下二维空间中的两个分布![P_1](http://www.zhihu.com/equation?tex=P_1)和![P_2](http://www.zhihu.com/equation?tex=P_2)，![P_1](http://www.zhihu.com/equation?tex=P_1)在线段AB上均匀分布，![P_2](http://www.zhihu.com/equation?tex=P_2)在线段CD上均匀分布，通过控制参数![\theta](http://www.zhihu.com/equation?tex=%5Ctheta)可以控制着两个分布的距离远近。
 
-![](https://pic3.zhimg.com/80/v2-c9cc9f8c879e7fe93d6e3bfafd41bd8a_hd.jpg)此时容易得到（读者可自行验证）
+![](https://raw.githubusercontent.com/Ein027/Blog-Img/master/img/v2-c9cc9f8c879e7fe93d6e3bfafd41bd8a_hd.jpg)此时容易得到（读者可自行验证）
 
 ![KL(P_1 || P_2) = KL(P_1 || P_2) =
 \begin{cases}
@@ -281,7 +281,7 @@ KL散度和JS散度是突变的，要么最大要么最小，**Wasserstein距离
 
 WGAN完整的算法流程已经贴过了，为了方便读者此处再贴一遍：
 
-![](https://pic1.zhimg.com/80/v2-6be6e2ef3d15c4b10c2a943e9bf4db70_hd.jpg)上文说过，WGAN与原始GAN第一种形式相比，只改了四点：
+![](https://raw.githubusercontent.com/Ein027/Blog-Img/master/img/v2-6be6e2ef3d15c4b10c2a943e9bf4db70_hd.jpg)上文说过，WGAN与原始GAN第一种形式相比，只改了四点：
 
 *   判别器最后一层去掉sigmoid
 *   生成器和判别器的loss不取log
@@ -292,11 +292,11 @@ WGAN完整的算法流程已经贴过了，为了方便读者此处再贴一遍�
 
 对WGAN作者做了不少实验验证，本文只提比较重要的三点。第一，判别器所近似的Wasserstein距离与生成器的生成图片质量高度相关，如下所示（此即题图）：
 
-![](https://pic3.zhimg.com/80/v2-3cfe84e6b6b58c00e013975fe649398e_hd.jpg)第二，WGAN如果用类似DCGAN架构，生成图片的效果与DCGAN差不多：![](https://pic2.zhimg.com/80/v2-5fdccfd580ea6f96626948cf8698a831_hd.jpg)但是厉害的地方在于WGAN不用DCGAN各种特殊的架构设计也能做到不错的效果，比如如果大家一起拿掉Batch Normalization的话，DCGAN就崩了：![](https://pic1.zhimg.com/80/v2-8adc9f92a9c6d5a43c00da4411a67c34_hd.jpg)
+![](https://raw.githubusercontent.com/Ein027/Blog-Img/master/img/v2-3cfe84e6b6b58c00e013975fe649398e_hd.jpg)第二，WGAN如果用类似DCGAN架构，生成图片的效果与DCGAN差不多：![](https://raw.githubusercontent.com/Ein027/Blog-Img/master/img/v2-5fdccfd580ea6f96626948cf8698a831_hd.jpg)但是厉害的地方在于WGAN不用DCGAN各种特殊的架构设计也能做到不错的效果，比如如果大家一起拿掉Batch Normalization的话，DCGAN就崩了：![](https://raw.githubusercontent.com/Ein027/Blog-Img/master/img/v2-8adc9f92a9c6d5a43c00da4411a67c34_hd.jpg)
 
 如果WGAN和原始GAN都使用多层全连接网络（MLP），不用CNN，WGAN质量会变差些，但是原始GAN不仅质量变得更差，而且还出现了collapse mode，即多样性不足：
 
-![](https://pic3.zhimg.com/80/v2-972a7823c50e7c8f5edba9ee7a252152_hd.jpg)
+![](https://raw.githubusercontent.com/Ein027/Blog-Img/master/img/v2-972a7823c50e7c8f5edba9ee7a252152_hd.jpg)
 
 第三，在所有WGAN的实验中未观察到collapse mode，作者也只说应该是解决了，
 
